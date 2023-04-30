@@ -15,7 +15,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void create(Employee employee) {
         try {
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             Employee newEmployee = new Employee();
             newEmployee.setFirstName(employee.getFirstName());
@@ -35,7 +35,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public void getById(int id) {
         try {
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             Employee employee = entityManager.find(Employee.class, id);
             if (employee != null) {
@@ -48,7 +48,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     public void getAll() {
         try {
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             TypedQuery<Employee> query = entityManager.createQuery("SELECT e FROM Employee e", Employee.class);
             List<Employee> employees = query.getResultList();
@@ -61,7 +61,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     }
 
     public void update(Employee employee) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         entityManager.merge(employee);
@@ -71,7 +71,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void deleteById(Employee employee, int id) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 

@@ -10,6 +10,4 @@ public interface EmployeeDAO {
     void getAll();
     void update(Employee employee);
     void deleteById(Employee employee,int id);
-
-    void deleteById(int id);
 }

@@ -22,7 +22,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             newEmployee.setLastName(employee.getLastName());
             newEmployee.setGender(employee.getGender());
             newEmployee.setAge(employee.getAge());
-            newEmployee.setCityId(employee.getCityId());
+            newEmployee.setCity(employee.getCity());
             entityManager.getTransaction().begin();
             entityManager.persist(newEmployee);
             entityManager.getTransaction().commit();

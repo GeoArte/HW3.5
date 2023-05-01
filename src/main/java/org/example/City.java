@@ -1,12 +1,21 @@
 package org.example;
 
-public class City {
-    private int id;
-    private String name;
+import javax.persistence.*;
+import java.util.List;
 
-    public City(int id, String name) {
-        this.id = id;
-        this.name = name;
+@Entity
+@Table(name = "city")
+public class City {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "city_name")
+    private String name;
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employee> employees;
+
+    public City() {
     }
 
     public int getId() {
@@ -17,11 +26,15 @@ public class City {
         return name;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -17,8 +17,9 @@ public class Employee {
     private String gender;
     @Column(name = "age")
     private int age;
-    @Column(name = "city_id")
-    private int cityId;
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "city_id")
+    private City city;
 
     public Employee() {
 
@@ -33,7 +34,11 @@ public class Employee {
     }
 
     public int getCityId() {
-        return cityId;
+        return city.getId();
+    }
+
+    public City getCity(){
+        return city;
     }
 
     public String getFirstName() {
@@ -52,8 +57,8 @@ public class Employee {
         this.age = age;
     }
 
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public void setFirstName(String firstName) {

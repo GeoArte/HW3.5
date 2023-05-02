@@ -14,4 +14,5 @@ public interface CityDAO {
     void update(City city);
 
     void deleteById(int id);
+    City returnCityById(int id);
 }

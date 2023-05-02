@@ -14,7 +14,7 @@ public class Application {
 
         //Создание объекта City
         City city = new City();
-        city.setName("Тбилиси");
+        city.setName("Moscow");
         test2.create(city);
 
         // Создание объектов Employee
@@ -23,7 +23,7 @@ public class Application {
         employee1.setLastName("Иванов");
         employee1.setGender("Мужской");
         employee1.setAge(25);
-        employee1.setCity(city);
+        employee1.setCity(test2.returnCityById(37));
         test.create(employee1);
 
         Employee employee2 = new Employee();
@@ -31,20 +31,19 @@ public class Application {
         employee2.setLastName("Петрова");
         employee2.setGender("Женский");
         employee2.setAge(30);
-        employee2.setCity(city);
+        employee2.setCity(test2.returnCityById(37));
         test.create(employee2);
 
         // Добавление сотрудников в объект City
         List<Employee> employees = new ArrayList<>();
         employees.add(employee1);
         employees.add(employee2);
-        city.setEmployees(employees);
+        test2.returnCityById(37).setEmployees(employees);
 
         // Получение города из базы данных и вывод информации о сотрудниках
-        int idCity = city.getId();
-        test2.getById(idCity);
-        System.out.println("Город " + city.getName() + " содержит следующих сотрудников:");
-        for (Employee employee : city.getEmployees()) {
+        test2.getById(37);
+        System.out.println("Город " + test2.returnCityById(37).getName() + " содержит следующих сотрудников:");
+        for (Employee employee : test2.returnCityById(37).getEmployees()) {
             System.out.println(" - " + employee.getFirstName() + " " + employee.getLastName());
         }
 
@@ -56,7 +55,7 @@ public class Application {
         test.getAll();
 
         // Удаление города из базы данных
-        test2.deleteById(city.getId());
+        test2.deleteById(test2.returnCityById(37).getId());
         // Проверка, что город и связанные сотрудники были удалены из базы данных
         test.getAll();
         test2.getAll();

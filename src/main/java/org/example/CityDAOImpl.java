@@ -4,17 +4,28 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 public class CityDAOImpl implements CityDAO {
-    private EntityManager entityManager;
+    private Connection connection;
 
-    public CityDAOImpl() {
-        this.entityManager = entityManager;
+    public CityDAOImpl() {this.connection = connection;
     }
 
-    public City getById(int id) {
-        return entityManager.find(City.class, id);
+    public void getById(int id) {
+        try {
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPersistenceUnit");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
+            City city = entityManager.find(City.class, id);
+            if (city != null) {
+                System.out.println(city.getId() + " " + city.getName());
+            }
+        } catch (Exception e) {
+            System.out.println("Error getting employee by ID: " + e.getMessage());
+        }
     }
 
     public void getAll() {
@@ -66,5 +77,11 @@ public class CityDAOImpl implements CityDAO {
 
         entityManager.getTransaction().commit();
         entityManager.close();
+    }
+    private Connection getConnection() throws SQLException {
+        String url = "jdbc:postgresql://localhost:5432/skypro";
+        String username = "postgres";
+        String password = "polkiklopov12";
+        return DriverManager.getConnection(url, username, password);
     }
 }

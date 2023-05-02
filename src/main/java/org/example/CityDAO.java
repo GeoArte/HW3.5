@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface CityDAO {
 
-    City getById(int id);
+    void getById(int id);
 
     void getAll();
 

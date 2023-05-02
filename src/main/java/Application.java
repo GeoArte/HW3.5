@@ -12,7 +12,7 @@ public class Application {
         CityDAO test2 = new CityDAOImpl();
         test.getAll();
 
-        // Создание объекта City
+        //Создание объекта City
         City city = new City();
         city.setName("Тбилиси");
         test2.create(city);
@@ -42,7 +42,7 @@ public class Application {
 
         // Получение города из базы данных и вывод информации о сотрудниках
         int idCity = city.getId();
-        city = test2.getById(idCity);
+        test2.getById(idCity);
         System.out.println("Город " + city.getName() + " содержит следующих сотрудников:");
         for (Employee employee : city.getEmployees()) {
             System.out.println(" - " + employee.getFirstName() + " " + employee.getLastName());
